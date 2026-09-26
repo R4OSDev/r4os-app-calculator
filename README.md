@@ -38,3 +38,7 @@ Detailed German technical notes from the migration are preserved in
 Original R4OS material is licensed under Apache License 2.0. See `LICENSE`
 and `NOTICE`. Any repository-specific external material is documented in
 `THIRD_PARTY_NOTICES.md`.
+
+Calculator declares `runtime.parallel=owned-v1` (0.1.4). Its mutable state
+belongs to its main thread; the hosted GUI uses the kernel's per-instance
+event/frame owners. Background instances can run on different CPUs.
