@@ -3,23 +3,30 @@
 
 CALC.R4X ist die gehostete Desktop-Rechner-App.
 
-Projektstruktur seit 0.51.20:
-- `build.zig` ruft seit 0.58.29 nur noch den generischen SDK-R4MF-Treiber.
+Projektstruktur:
+- `build.zig` ruft den generischen SDK-R4MF-Treiber.
 - `build.zig.zon` bindet `r4os_sdk` als Paket.
 - `module.R4MF` v2 beschreibt Sprache, Quelle, Klasse, Ziel, Scope und Imports.
 
-Build:
+Einzelbuild vom Workspace-Root unter Linux:
 
-    DevTools\Scripts\Build.bat -app CALC
+    ./Repositories/Apps/Calculator/Build.sh
 
-Ergebnis:
+Unter Windows:
 
-    Code\zig-out\CALC.R4X
+    Repositories\Apps\Calculator\Build.bat
+
+Ergebnis mit dem aktuellen ARTIFACTS_ROOT aus Settings.R4S:
+
+    Artifacts/Modules/Calculator/CALC.R4X
+
+Das Full-Profil enthaelt die App; im Startmenue liegt sie unter
+Programs > Calculator. Das Slim-Profil enthaelt sie nicht.
 
 Contract:
 - fachlicher Einstieg: `r4_app_main`; das SDK exportiert `R4XStart`
 - App-Klasse: `gui`
-- R4L-Imports: `R4SYS`, `R4DESK`, `R4DRAW`
+- Plattform-Imports: `R4SYS`, `R4DESK`, `R4DRAW` (jeweils Query:1)
 - Zielpfad im Image: `C:\R4OS\SOFTWARE\DESKTOP\CALC.R4X`
-- Window-/Message-/PaintContext-Fassade mit `desktopActivityWait` statt
-  Drei-Tick-Polling
+- Window-/Message-/PaintContext-Fassade; die Ereignisschleife wartet ueber
+  `window.waitMessage` ohne Polling.
