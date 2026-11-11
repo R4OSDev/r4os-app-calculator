@@ -30,3 +30,10 @@ Contract:
 - Zielpfad im Image: `C:\R4OS\SOFTWARE\DESKTOP\CALC.R4X`
 - Window-/Message-/PaintContext-Fassade; die Ereignisschleife wartet ueber
   `window.waitMessage` ohne Polling.
+
+API-Migration 0.90.68
+---------------------
+Calculator7 verwendet App2/Query2 mit dem normalen SDK201/Contract93 und dem
+gemeinsamen Window-Wait-/Paintvertrag. Fontwechsel baut das Layout neu auf.
+Fokusverlust und Inputreset verwerfen einen gedrueckten Button vor mouse_up.
+Die vorhandene Festkommaarithmetik und Anzeige werden im normalen GUI benutzt.

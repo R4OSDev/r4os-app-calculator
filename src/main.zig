@@ -12,7 +12,7 @@ const scale: i64 = 1_000_000;
 const max_display: usize = 24;
 const scratch_capacity: usize = 128;
 
-pub fn r4_app_main(contract: *r4os.App) i32 {
+pub fn r4_app_main(contract: *r4os.App2) i32 {
     var timers: [1]r4os.Timer = .{.{}};
     var window = contract.window(timers[0..]) orelse return r4os.abi.err_no_group;
     var ctx = AppApi{ .sys = contract.system(), .window = &window };
@@ -94,9 +94,13 @@ const App = struct {
             switch (self.ctx.window.waitMessage(r4os.time_contract.timeoutForever())) {
                 .message => |message| switch (message) {
                     .close => return 0,
-                    .resize => {
+                    .resize, .font_changed => {
                         self.updateMetrics();
                         needs_render = true;
+                    },
+                    .input_reset, .focus_lost => {
+                        needs_render = self.pressed != .none;
+                        self.pressed = .none;
                     },
                     .key => |key| {
                         if (self.handleKey(key.key)) needs_render = true;

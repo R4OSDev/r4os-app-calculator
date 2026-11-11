@@ -4,7 +4,7 @@
 
 ## Package
 
-- Version: `0.1.4`
+- Version: `0.1.7`
 - Image target: `/R4OS/SOFTWARE/DESKTOP/CALC.R4X`
 - Image scope: `full`
 - Canonical project manifest: `module.R4MF`
@@ -42,3 +42,10 @@ and `NOTICE`. Any repository-specific external material is documented in
 Calculator declares `runtime.parallel=owned-v1` (0.1.4). Its mutable state
 belongs to its main thread; the hosted GUI uses the kernel's per-instance
 event/frame owners. Background instances can run on different CPUs.
+
+API migration 0.90.68
+---------------------
+Calculator uses normal App2/Query2 with SDK201/Contract93. The shared Window
+owns event waiting and paint publication. Font changes rebuild layout.
+Focus loss and input reset clear an armed digit/button before mouse release.
+Existing fixed-point arithmetic and display formatting are used by the GUI.
