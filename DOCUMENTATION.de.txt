@@ -24,9 +24,9 @@ Das Full-Profil enthaelt die App; im Startmenue liegt sie unter
 Programs > Calculator. Das Slim-Profil enthaelt sie nicht.
 
 Contract:
-- fachlicher Einstieg: `r4_app_main`; das SDK exportiert `R4XStart`
+- fachlicher Einstieg: `r4_app_main`; das SDK exportiert `R4XStart2:2`
 - App-Klasse: `gui`
-- Plattform-Imports: `R4SYS`, `R4DESK`, `R4DRAW` (jeweils Query:1)
+- Plattform-Imports: `R4SYS`, `R4DESK`, `R4DRAW` (jeweils Query2:2)
 - Zielpfad im Image: `C:\R4OS\SOFTWARE\DESKTOP\CALC.R4X`
 - Window-/Message-/PaintContext-Fassade; die Ereignisschleife wartet ueber
   `window.waitMessage` ohne Polling.
